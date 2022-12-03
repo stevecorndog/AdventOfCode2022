@@ -7,7 +7,9 @@ fun main() {
     val day = "day3"
     println("Output for $day")
 
-    val points = ('@'..'@') + ('a'..'z') + ('A'..'Z')
+    val points = arrayListOf('@') // dummy
+    points.addAll(('a'..'z')) // 1 - 26
+    points.addAll(('A'..'Z')) // 27 - 52
 
     fun part1(input: List<String>) : Int {
         var score = 0
