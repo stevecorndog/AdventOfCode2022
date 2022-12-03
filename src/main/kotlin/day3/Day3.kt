@@ -7,25 +7,17 @@ fun main() {
     val day = "day3"
     println("Output for $day")
 
+    val points = ('@'..'@') + ('a'..'z') + ('A'..'Z')
+
     fun part1(input: List<String>) : Int {
-        // vJrwpWtwJgWrhcsFMMfFFhFp
         var score = 0
         input.forEach { line ->
             val rucksackContents= line.toList()
-            val compartmentA = rucksackContents.take(rucksackContents.size/2)
-            val compartmentB = rucksackContents.takeLast(rucksackContents.size/2)
+            val compartmentA = rucksackContents.take(rucksackContents.size/2).toSet()
+            val compartmentB = rucksackContents.takeLast(rucksackContents.size/2).toSet()
+            val commonItem = compartmentA.intersect(compartmentB).first()
 
-
-            val commonItem = compartmentA.filter { compartmentB.contains(it) }[0]
-//            println("Rucksack $line has $compartmentA and $compartmentB with $commonItem in common")
-
-            if (commonItem in 'a'..'z') {
-                score  += commonItem - 'a' + 1
-            }
-            if (commonItem in 'A'..'Z') {
-                score  += commonItem - 'A' + 27
-            }
-
+            score += points.indexOf(commonItem)
         }
 
         return score
@@ -36,17 +28,11 @@ fun main() {
 
         input.chunked(3).forEach {
             // what's the common item in the 3 rows?
-            val commonItem = it[0].toList().filter { row0Char -> it[1].toList().contains(row0Char) }
-                .filter { row01Char -> it[2].toList().contains(row01Char) }[0]
-            println("Common char in first 3 rows is $commonItem")
-
-
-            if (commonItem in 'a'..'z') {
-                score  += commonItem - 'a' + 1
-            }
-            if (commonItem in 'A'..'Z') {
-                score  += commonItem - 'A' + 27
-            }
+            val elf1 = it[0].toSet()
+            val elf2 = it[1].toSet()
+            val elf3 = it[2].toSet()
+            val commonItem = elf1.intersect(elf2).intersect(elf3).first()
+            score += points.indexOf(commonItem)
 
         }
         return score
