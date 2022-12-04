@@ -1,6 +1,8 @@
 
 import java.io.File
 import java.lang.AssertionError
+import java.time.Duration
+import java.time.LocalDateTime
 
 fun readInput(day:String, name:String) = File("src/main/kotlin/$day", name)
     .readLines()
@@ -32,6 +34,10 @@ fun hexToBinaryString(hex: String) : String {
         binaryString += Integer.toBinaryString(i).padStart(4, '0')
     }
     return binaryString
+}
+
+fun howLong(start : LocalDateTime): Duration {
+    return Duration.between(start, LocalDateTime.now())
 }
 
 

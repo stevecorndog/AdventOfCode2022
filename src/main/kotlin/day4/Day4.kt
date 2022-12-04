@@ -1,7 +1,9 @@
 package day4
 
 
+import howLong
 import readInput
+import java.time.LocalDateTime
 
 fun main() {
 
@@ -44,8 +46,16 @@ fun main() {
     val input = readInput(day, "input.txt")
 
     check(part1(testInput) == 2)
-    println("Part 1 answer: ${part1(input)}")
+
+    var startTime = LocalDateTime.now()
+    val part1 = part1(input)
+    var duration = howLong(startTime)
+    println("Part 1 answer: $part1 - took ${duration.toMillis()}ms")
 
     check(part2(testInput) == 4)
-    println("Part 2 answer: ${part2(input)}")
+
+    startTime = LocalDateTime.now()
+    val part2 = part2(input)
+    duration = howLong(startTime)
+    println("Part 2 answer: ${part2} - took ${duration.toMillis()}ms")
 }

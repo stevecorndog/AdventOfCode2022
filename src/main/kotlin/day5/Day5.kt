@@ -1,4 +1,5 @@
-package template
+package day5
+
 
 import howLong
 import readInput
