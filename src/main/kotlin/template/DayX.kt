@@ -6,7 +6,7 @@ import java.time.LocalDateTime
 
 fun main() {
 
-    val day = "day5"
+    val day = "dayX"
     println("Output for $day")
 
     fun part1(input: List<String>) : Int {
