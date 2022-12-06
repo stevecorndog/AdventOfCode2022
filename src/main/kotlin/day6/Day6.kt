@@ -14,7 +14,7 @@ fun main() {
 
         datastream.toList().windowed(packetSize).forEachIndexed { index, chars ->
             // we have a window of chars - are they different?
-            if (!(chars.toSet().size < packetSize)) {
+            if (chars.toSet().size == packetSize) {
                 return index + packetSize
             }
         }
