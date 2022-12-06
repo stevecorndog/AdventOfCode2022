@@ -10,44 +10,25 @@ fun main() {
     val day = "day6"
     println("Output for $day")
 
-    fun part1(input: List<String>) : Int {
-        var result = 0
-        val packetSize = 4
+    fun findStartOfPacketMarker(datastream: String, packetSize: Int): Int {
 
-        val windowed = input[0].toList().windowed(packetSize)
-
-        for (index in 0 until windowed.size) {
-            val chars = windowed[index]
+        datastream.toList().windowed(packetSize).forEachIndexed { index, chars ->
             // we have a window of 4 chars - are they different?
             if (!chars.groupingBy { it }.eachCount().any { it.value > 1 }) {
-                // yes, what
-                result = index + packetSize
-                println("Different $chars at index $index, result is $result")
-                break
+                // yes, what is the position of the start of packet marker?
+                return index + packetSize
             }
         }
 
-        return result
+        return 0
+    }
+
+    fun part1(input: List<String>) : Int {
+        return findStartOfPacketMarker(input[0], 4)
     }
 
     fun part2(input: List<String>) : Int {
-        var result = 0
-        val packetSize = 14
-
-        val windowed = input[0].toList().windowed(packetSize)
-
-        for (index in 0 until windowed.size) {
-            val chars = windowed[index]
-            // we have a window of chars - are they different?
-            if (!chars.groupingBy { it }.eachCount().any { it.value > 1 }) {
-                // yes, what
-                result = index + packetSize
-                println("Different $chars at index $index, result is $result")
-                break
-            }
-        }
-
-        return result
+        return findStartOfPacketMarker(input[0], 14)
     }
 
     val testInput = readInput(day, "test.txt")
