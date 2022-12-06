@@ -13,9 +13,8 @@ fun main() {
     fun findStartOfPacketMarker(datastream: String, packetSize: Int): Int {
 
         datastream.toList().windowed(packetSize).forEachIndexed { index, chars ->
-            // we have a window of 4 chars - are they different?
-            if (!chars.groupingBy { it }.eachCount().any { it.value > 1 }) {
-                // yes, what is the position of the start of packet marker?
+            // we have a window of chars - are they different?
+            if (!(chars.toSet().size < packetSize)) {
                 return index + packetSize
             }
         }
