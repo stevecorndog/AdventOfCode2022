@@ -37,5 +37,5 @@ fun main() {
     startTime = LocalDateTime.now()
     val part2 = part2(input)
     duration = howLong(startTime)
-    println("Part 2 answer: ${part2} - took ${duration.toMillis()}ms")
+    println("Part 2 answer: $part2 - took ${duration.toMillis()}ms")
 }
