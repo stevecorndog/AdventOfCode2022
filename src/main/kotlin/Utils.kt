@@ -40,4 +40,6 @@ fun howLong(start : LocalDateTime): Duration {
     return Duration.between(start, LocalDateTime.now())
 }
 
+data class Point(val x:Int, val y:Int)
+
 
